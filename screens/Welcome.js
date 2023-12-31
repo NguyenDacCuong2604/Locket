@@ -7,7 +7,7 @@ import Button from '../components/Button';
 const Welcome= ({navigation}) => {
     return(
         <LinearGradient style={{flex:1}}
-        colors={[COLORS.seconddary, COLORS.primary]} >
+        colors={[COLORS.primary, COLORS.seconddary]} >
             <View style={{flex:1}}>
                 <View>
                     <Image 

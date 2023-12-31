@@ -2,7 +2,7 @@ const COLORS = {
     white: "#FFFFFF",
     black: "#000000",
     primary: "#000000",
-    seconddary: "#0d0a0a",
+    seconddary: "#0d1117",
     grey: "#CCCCCC"
 }
 
