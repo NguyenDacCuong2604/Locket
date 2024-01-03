@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Login, Signup, Welcome, Dashboard, Status } from './screens';
+import { Login, Signup, Welcome, Dashboard, Status, Home } from './screens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomNavigation from './components/BottomNavigation';
 
@@ -10,7 +10,7 @@ export default function App() {
   return (
     <SafeAreaView style={{flex:1}}>
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Welcome'>
+      <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen 
         name='Welcome'
         component={Welcome}
@@ -19,6 +19,11 @@ export default function App() {
         <Stack.Screen
         name='Login'
         component={Login}
+        options={{headerShown:false}}
+        />
+         <Stack.Screen
+        name='Home'
+        component={Home}
         options={{headerShown:false}}
         />
         <Stack.Screen
