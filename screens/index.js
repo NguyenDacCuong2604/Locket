@@ -1,9 +1,21 @@
-import Login from "./Login";
-import Signup from "./Signup";
-import Welcome from "./Welcome";
+import Login from "./auth/Login";
+import Signup from "./auth/Signup";
+import Welcome from "./auth/Welcome";
+import Dashboard from "./dashboard/Dashboard";
+import Status from "./screenComponents/Status";
+import Search from "./dashboard/Search";
+import AddPost from "./dashboard/AddPost";
+import UserProfile from "./dashboard/UserProfile";
+import Activity from "./dashboard/Activity";
 
 export{
     Login,
     Signup,
-    Welcome
+    Welcome,
+    Dashboard,
+    Status,
+    Search,
+    AddPost,
+    UserProfile,
+    Activity
 }
