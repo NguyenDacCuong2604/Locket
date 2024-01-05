@@ -7,6 +7,8 @@ import Search from "./dashboard/Search";
 import AddPost from "./dashboard/AddPost";
 import UserProfile from "./dashboard/UserProfile";
 import Activity from "./dashboard/Activity";
+import EditProfile from "./screenComponents/EditProfile";
+import ShareProfile from "./screenComponents/ShareProfile";
 
 export{
     Login,
@@ -17,5 +19,7 @@ export{
     Search,
     AddPost,
     UserProfile,
-    Activity
+    Activity,
+    EditProfile,
+    ShareProfile
 }

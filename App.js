@@ -1,13 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Login, Signup, Welcome, Dashboard, Status } from './screens';
+import { Login, Signup, Welcome, Dashboard, Status, EditProfile, ShareProfile } from './screens';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomNavigation from './components/BottomNavigation';
+import { AuthProvider } from './context/AuthContext';
+
 
 
 const Stack = createNativeStackNavigator()
 export default function App() {
   return (
+    <AuthProvider>
     <SafeAreaView style={{flex:1}}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Welcome'>
@@ -36,9 +39,20 @@ export default function App() {
         component={Status}
         options={{headerShown:false}}
         />
+        <Stack.Screen
+        name='EditProfile'
+        component={EditProfile}
+        options={{headerShown:false}}
+        />
+        <Stack.Screen
+        name='ShareProfile'
+        component={ShareProfile}
+        options={{headerShown:false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
     </SafeAreaView>
+    </AuthProvider>
   );
 }
 

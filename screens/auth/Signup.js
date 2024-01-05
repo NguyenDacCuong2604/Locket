@@ -1,18 +1,28 @@
 import { View, Text, Image, Pressable, TextInput, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import COLORS from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
 import { StyleSheet } from 'react-native';
+import { AuthContext } from '../../context/AuthContext';
 
 const Signup = ({navigation}) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 
+    //email
+    const [email, setEmail] = useState(null);
+    //full name
+    const [fullname, setFullname] = useState(null);
+    //password
+    const [password, setPassword] = useState(null);
+
+    const val = useContext(AuthContext);
+
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.black }}>
             <View style={{ flex: 1, marginHorizontal: 22 }}>
+                <Text style={{color:'white'}}>val</Text>
                 <View style={{ marginVertical: 4 }}>
                     <Text style={{
                         fontSize: 22,
@@ -54,6 +64,7 @@ const Signup = ({navigation}) => {
                             style={{
                                 width: "100%", color:COLORS.white
                             }}
+                            value={email} onChangeText={text => setEmail(text)}
                         />
                     </View>
                 </View>
@@ -85,6 +96,7 @@ const Signup = ({navigation}) => {
                             style={{
                                 width: "100%", color:COLORS.white
                             }}
+                            value={fullname} onChangeText={text => setFullname(fullname)}
                         />
                     </View>
                 </View>
@@ -114,6 +126,7 @@ const Signup = ({navigation}) => {
                             style={{
                                 width: "100%", color:COLORS.white
                             }}
+                            value={password} onChangeText={text => setPassword(text)}
                         />
 
                         <TouchableOpacity
@@ -133,19 +146,6 @@ const Signup = ({navigation}) => {
 
                         </TouchableOpacity>
                     </View>
-                </View>
-
-                <View style={{
-                    flexDirection: 'row',
-                    marginVertical: 6
-                }}>
-                    <Checkbox
-                        style={{ marginRight: 8 }}
-                        value={isChecked}
-                        onValueChange={setIsChecked}
-                    />
-
-                    <Text style={{color:COLORS.white}}>I aggree to the terms and conditions</Text>
                 </View>
 
                 <TouchableOpacity style={styles.button}>

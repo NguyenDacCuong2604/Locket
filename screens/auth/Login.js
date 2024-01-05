@@ -1,19 +1,26 @@
 import { View, Text, TextInput, TouchableOpacity, Image, Pressable} from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import COLORS from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
-import Checkbox from "expo-checkbox";
 import { StyleSheet } from 'react-native';
+import { AuthContext } from '../../context/AuthContext';
 
 const Login = ({navigation}) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    //email
+    const [email, setEmail] = useState(null);
+    //password
+    const [password, setPassword] = useState(null);
+
+    const val = useContext(AuthContext);
 
     return(
         <SafeAreaView style={{flex:1, backgroundColor:COLORS.black}}>
             <View style={{flex:1, marginHorizontal:22}}>
                 <View style={{marginVertical:22}}>
+                    <Text style={{color:'white'}}>val</Text>
                     <Text 
                         style={{fontSize:22, fontWeight:'bold', marginVertical:12, color:COLORS.white}}>Hi Welcome Back ! 👋</Text>
                     <Text style={{fontSize:16, color:COLORS.white, fontWeight:600}}>
@@ -29,7 +36,8 @@ const Login = ({navigation}) => {
                     <View style={{width:'100%', height:48, borderColor: COLORS.white,
                         borderWidth:1, borderRadius:8, alignItems:'center', justifyContent:'center', paddingLeft:22}}>
                         <TextInput placeholder='Enter your email address' placeholderTextColor={COLORS.white}
-                            keyboardType='email-address' style={{width:'100%', color:COLORS.white}} />
+                            keyboardType='email-address' style={{width:'100%', color:COLORS.white}} 
+                            value={email} onChangeText={text=> setEmail(text)}/>
                     </View>
                 </View>
 
@@ -41,7 +49,8 @@ const Login = ({navigation}) => {
                     <View style={{width:'100%', height:48, borderColor: COLORS.white,
                         borderWidth:1, borderRadius:8, alignItems:'center', justifyContent:'center', paddingLeft:22}}>
                             <TextInput placeholder='Enter your password' placeholderTextColor={COLORS.white}
-                            style={{width:'100%', color:COLORS.white}} secureTextEntry={!isPasswordShown} />
+                            style={{width:'100%', color:COLORS.white}} secureTextEntry={!isPasswordShown} 
+                            value={password} onChangeText={text => setPassword(text)}/>
 
                             <TouchableOpacity onPress={() => setIsPasswordShown(!isPasswordShown)}
                             style={{position:"absolute", right:12}}>
@@ -54,12 +63,6 @@ const Login = ({navigation}) => {
                                 }
                             </TouchableOpacity>
                     </View>
-                </View>
-
-                <View style={{flexDirection:'row', marginVertical:6}}>
-                        <Checkbox style={{marginRight:8}} value={isChecked} onValueChange={setIsChecked}
-                    />
-                        <Text style={{color:COLORS.white}}>Remember Me</Text>
                 </View>
 
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Dashboard")}>
