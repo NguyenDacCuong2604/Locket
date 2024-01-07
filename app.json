@@ -3,6 +3,7 @@
     "name": "Locket",
     "slug": "Locket",
     "version": "1.0.0",
+    "host": "127.0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

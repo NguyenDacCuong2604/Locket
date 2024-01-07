@@ -1,12 +1,28 @@
 import {ScrollView, View} from 'react-native';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import COLORS from '../../constants/colors';
 import Header from '../../components/Header';
 import Stories from '../screenComponents/Stories';
 import Post from '../screenComponents/Post';
 import Ionic from 'react-native-vector-icons/Ionicons'
+import { AuthContext } from '../../context/AuthContext';
 
 const Dashboard = ({navigation}) => {
+    const {getAccountInfo, accountInfo} = useContext(AuthContext);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+              await getAccountInfo();
+            } catch (error) {
+              // Xử lý lỗi ở đây
+              console.log(error);
+            }
+          };
+        
+          fetchData();
+    }, [])
+
     return(
         <View style={{backgroundColor:'white', height:'100%'}}>
             <Header/>

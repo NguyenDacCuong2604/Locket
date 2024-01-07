@@ -1,13 +1,22 @@
 import { View, Text, Image, Pressable } from 'react-native';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import COLORS from '../../constants/colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import Button from '../../components/Button';
+import { AuthContext } from '../../context/AuthContext';
+
 
 const Welcome= ({navigation}) => {
+
+    const { resetIsRegister} = useContext(AuthContext);
+
+    useEffect(()=> {
+        resetIsRegister();
+    }, [])
+
     return(
         <LinearGradient style={{flex:1}}
-        colors={[COLORS.primary, COLORS.seconddary]} >
+        colors={['#007260', '#39B68D']} >
             <View style={{flex:1}}>
                 <View>
                     <Image 
@@ -72,9 +81,9 @@ const Welcome= ({navigation}) => {
                 </View>
                 {/* Content */}
                 <View style={{
-                    paddingHorizontal:22,
+                    paddingHorizontal:18,
                     position: "absolute",
-                    top:390,
+                    top:370,
                     width:"100%",
                     justifyContent:'center',
                     alignItems:'center'
@@ -90,10 +99,10 @@ const Welcome= ({navigation}) => {
                     </View>
                     <View style={{alignItems:'center', justifyContent:'center'}}>
                         <Text
-                            style={{fontSize:17, fontWeight:800, color:'#bcb9b3', paddingHorizontal:60}}
+                            style={{fontSize:17, fontWeight:800, color:'white', paddingHorizontal:60}}
                         >Ảnh trực tiếp từ bạn bè,</Text>
                         <Text
-                            style={{fontSize:17, fontWeight:800, color:'#bcb9b3', paddingHorizontal:60}}    
+                            style={{fontSize:17, fontWeight:800, color:'white', paddingHorizontal:60}}    
                         >ngay trên màn hình chính</Text>
                     </View>
 
@@ -102,7 +111,7 @@ const Welcome= ({navigation}) => {
 
                     <View style={{
                         flexDirection: 'row',
-                        marginTop:16,
+                        marginTop:12,
                         justifyContent: 'center'
                     }}>
                         <Pressable onPress={() => navigation.navigate("Login")}>
@@ -113,7 +122,7 @@ const Welcome= ({navigation}) => {
                         }}>Sign in</Text>
                         </Pressable>
                     </View>
-                </View>
+                  </View>
             </View>
         </LinearGradient>
     )
