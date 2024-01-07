@@ -7,14 +7,14 @@ const Button = (props) => {
     return (
         <TouchableOpacity onPress={props.onPress}
             style={styles.button}>
-            <Text style={{fontSize:20, fontWeight:700}}>Create an account</Text>
+            <Text style={{fontSize:20, fontWeight:600}}>Create an account</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     button:{
-        marginTop:24,
+        marginTop:18,
         width:'60%',
         backgroundColor: '#feb800',
         paddingBottom:16,

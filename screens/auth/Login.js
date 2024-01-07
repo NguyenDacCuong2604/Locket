@@ -5,67 +5,80 @@ import COLORS from '../../constants/colors';
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet } from 'react-native';
 import { AuthContext } from '../../context/AuthContext';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { ToastMessage } from '../ShowToast';
 
 const Login = ({navigation}) => {
     const [isPasswordShown, setIsPasswordShown] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
     //email
     const [email, setEmail] = useState(null);
     //password
     const [password, setPassword] = useState(null);
 
-    const val = useContext(AuthContext);
+    const {isLoading, login} = useContext(AuthContext);
+
+    const loginAccount = () => {
+        if(!email){
+            ToastMessage('Enter your email!!!');
+            return;
+        }
+        if(!password){
+            ToastMessage('Enter your password!!!');
+            return;
+        }
+        login(email, password);
+    }
 
     return(
-        <SafeAreaView style={{flex:1, backgroundColor:COLORS.black}}>
+        <SafeAreaView style={{flex:1, backgroundColor:COLORS.white}}>
+            <Spinner visible={isLoading} />
             <View style={{flex:1, marginHorizontal:22}}>
                 <View style={{marginVertical:22}}>
-                    <Text style={{color:'white'}}>val</Text>
                     <Text 
-                        style={{fontSize:22, fontWeight:'bold', marginVertical:12, color:COLORS.white}}>Hi Welcome Back ! 👋</Text>
-                    <Text style={{fontSize:16, color:COLORS.white, fontWeight:600}}>
+                        style={{fontSize:22, fontWeight:'bold', marginVertical:12, color:COLORS.black}}>Hi Welcome Back ! 👋</Text>
+                    <Text style={{fontSize:16, color:COLORS.black, fontWeight:600}}>
                         Hello again you have been missed!
                     </Text>
                 </View>
 
                 <View style={{marginBottom:12}}>
-                    <Text style={{fontSize:16, marginVertical:8, color:COLORS.white, fontWeight:500}}>
+                    <Text style={{fontSize:16, marginVertical:8, color:COLORS.black, fontWeight:500}}>
                         Email address
                     </Text>
 
-                    <View style={{width:'100%', height:48, borderColor: COLORS.white,
+                    <View style={{width:'100%', height:48, borderColor: COLORS.black,
                         borderWidth:1, borderRadius:8, alignItems:'center', justifyContent:'center', paddingLeft:22}}>
-                        <TextInput placeholder='Enter your email address' placeholderTextColor={COLORS.white}
-                            keyboardType='email-address' style={{width:'100%', color:COLORS.white}} 
+                        <TextInput placeholder='Enter your email address' placeholderTextColor={COLORS.black}
+                            keyboardType='email-address' style={{width:'100%', color:COLORS.black}} 
                             value={email} onChangeText={text=> setEmail(text)}/>
                     </View>
                 </View>
 
                 <View style={{marginBottom:12}}>
-                    <Text style={{fontSize:16, marginVertical:8, color:COLORS.white, fontWeight:500}}>
+                    <Text style={{fontSize:16, marginVertical:8, color:COLORS.black, fontWeight:500}}>
                         Password
                     </Text>
 
-                    <View style={{width:'100%', height:48, borderColor: COLORS.white,
+                    <View style={{width:'100%', height:48, borderColor: COLORS.black,
                         borderWidth:1, borderRadius:8, alignItems:'center', justifyContent:'center', paddingLeft:22}}>
-                            <TextInput placeholder='Enter your password' placeholderTextColor={COLORS.white}
-                            style={{width:'100%', color:COLORS.white}} secureTextEntry={!isPasswordShown} 
+                            <TextInput placeholder='Enter your password' placeholderTextColor={COLORS.black}
+                            style={{width:'100%', color:COLORS.black}} secureTextEntry={!isPasswordShown} 
                             value={password} onChangeText={text => setPassword(text)}/>
 
                             <TouchableOpacity onPress={() => setIsPasswordShown(!isPasswordShown)}
                             style={{position:"absolute", right:12}}>
                                 {
                                     isPasswordShown == true ? (
-                                        <Ionicons name='eye-off' size={24} color={COLORS.white} />
+                                        <Ionicons name='eye-off' size={24} color={COLORS.black} />
                                     ) : (
-                                        <Ionicons name='eye' size={24} color={COLORS.white} />
+                                        <Ionicons name='eye' size={24} color={COLORS.black} />
                                     )
                                 }
                             </TouchableOpacity>
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Dashboard")}>
+                <TouchableOpacity style={styles.button} onPress={loginAccount}>
                     <Text style={{fontSize:20, fontWeight:700}}>Login</Text>
                 </TouchableOpacity>
 
@@ -74,16 +87,16 @@ const Login = ({navigation}) => {
                         style={{
                             flex: 1,
                             height: 1,
-                            backgroundColor: COLORS.grey,
+                            backgroundColor: COLORS.black,
                             marginHorizontal: 10
                         }}
                     />
-                    <Text style={{ fontSize: 14, color:COLORS.white, fontWeight:500 }}>Or Login with</Text>
+                    <Text style={{ fontSize: 14, color:COLORS.black, fontWeight:500 }}>Or Login with</Text>
                     <View
                         style={{
                             flex: 1,
                             height: 1,
-                            backgroundColor: COLORS.grey,
+                            backgroundColor: COLORS.black,
                             marginHorizontal: 10
                         }}
                     />
@@ -103,7 +116,7 @@ const Login = ({navigation}) => {
                             flexDirection: 'row',
                             height: 52,
                             borderWidth: 1,
-                            borderColor: COLORS.grey,
+                            borderColor: COLORS.black,
                             marginRight: 4,
                             borderRadius: 10
                         }}
@@ -118,7 +131,7 @@ const Login = ({navigation}) => {
                             resizeMode='contain'
                         />
 
-                        <Text style={{color:COLORS.white}}>Google</Text>
+                        <Text style={{color:COLORS.black}}>Google</Text>
                     </TouchableOpacity>
                 </View>
                 
@@ -127,19 +140,20 @@ const Login = ({navigation}) => {
                     justifyContent: "center",
                     marginVertical: 22
                 }}>
-                    <Text style={{ fontSize: 16, color: COLORS.white }}>Don't have an account ? </Text>
+                    <Text style={{ fontSize: 16, color: COLORS.black }}>Don't have an account ? </Text>
                     <Pressable
                         onPress={() => navigation.navigate("Signup")}
                     >
                         <Text style={{
                             fontSize: 16,
-                            color: COLORS.white,
+                            color: COLORS.black,
                             fontWeight: 600,
                             marginLeft: 6
                         }}>Sign up</Text>
                     </Pressable>
                 </View>
-            </View>
+                
+            </View>   
         </SafeAreaView>
     )
 }

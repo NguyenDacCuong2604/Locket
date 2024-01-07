@@ -9,6 +9,8 @@ import UserProfile from "./dashboard/UserProfile";
 import Activity from "./dashboard/Activity";
 import EditProfile from "./screenComponents/EditProfile";
 import ShareProfile from "./screenComponents/ShareProfile";
+import ChangePassword from "./screenComponents/ChangePassword";
+import UploadPost from "./screenComponents/UploadPost";
 
 export{
     Login,
@@ -21,5 +23,7 @@ export{
     UserProfile,
     Activity,
     EditProfile,
-    ShareProfile
+    ShareProfile,
+    ChangePassword,
+    UploadPost
 }
